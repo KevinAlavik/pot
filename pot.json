@@ -1,0 +1,62 @@
+{
+    "packages":[
+        {
+            "name":"test",
+            "versions":[
+                {
+                    "versionNumber": "0.0.1",
+                    "binary": "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/demo/test@0.0.1"
+                },
+                {
+                    "versionNumber": "0.0.2",
+                    "binary": "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/demo/test@0.0.3"
+                },
+                {
+                    "versionNumber": "0.0.4",
+                    "binary": "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/demo/test@0.0.4"
+                },
+                {
+                    "versionNumber": "0.0.5",
+                    "binary": "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/demo/test@0.0.5"
+                },
+                {
+                    "versionNumber": "0.0.6",
+                    "binary": "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/demo/test@0.0.6"
+                },
+                {
+                    "versionNumber": "0.0.7",
+                    "binary": "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/demo/test@0.0.7"
+                }
+            ]
+        },
+        {
+            "name":"cool-app",
+            "versions":[
+                {
+                    "versionNumber": "0.0.1",
+                    "binary": "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/demo/cool-app@0.0.1"
+                },
+                {
+                    "versionNumber": "0.0.2",
+                    "binary": "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/demo/cool-app@0.0.3"
+                },
+                {
+                    "versionNumber": "0.0.4",
+                    "binary": "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/demo/cool-app@0.0.4"
+                },
+                {
+                    "versionNumber": "0.0.5",
+                    "binary": "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/demo/cool-app@0.0.5"
+                },
+                {
+                    "versionNumber": "0.0.6",
+                    "binary": "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/demo/cool-app@0.0.6"
+                },
+                {
+                    "versionNumber": "0.0.7",
+                    "binary": "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/demo/cool-app@0.0.7"
+                }
+            ]
+        }
+    ]
+}

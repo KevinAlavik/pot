@@ -1,9 +1,14 @@
 use reqwest;
 use serde_json::Value;
-#[allow(unused_imports)]
 use colored::Colorize;
 use std::time::Instant;
 use clap::{App, Arg};
+use std::path::Path;
+use std::fs;
+use std::os::unix::fs::PermissionsExt;
+use libc::mode_t;
+use libc::chmod;
+use std::ffi::CString;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -31,7 +36,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 async fn fetch_json() -> Result<(), Box<dyn std::error::Error>> {
-    let url = "http://keso.local/pot.json";
+    let url = "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/pot.json";
 
     let response = reqwest::get(url).await?;
 
@@ -49,7 +54,7 @@ async fn fetch_json() -> Result<(), Box<dyn std::error::Error>> {
         if let Some(packages_array) = packages {
             for (i, package) in packages_array.as_array().unwrap().iter().enumerate() {
                 if let Some(name) = package.get("name") {
-                    println!("{} Package {}: {}", "Found".green(), i+1, name);
+                    println!("📦 {} Package {}: {}", "Found".green(), i+1, name);
                 }
             }
         }
@@ -67,7 +72,7 @@ async fn fetch_json() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 async fn install_package(package: &str) -> Result<(), Box<dyn std::error::Error>> {
-    let url = "http://keso.local/pot.json";
+    let url = "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/pot.json";
 
     let response = reqwest::get(url).await?;
 
@@ -95,12 +100,66 @@ async fn install_package(package: &str) -> Result<(), Box<dyn std::error::Error>
 
         if let Some(package_info) = package_info {
             if let Some(binary) = package_info["binary"].as_str() {
-                println!("Binary URL: {}", binary);
+                let response = reqwest::get(binary).await?;
+                let package_name = package.split('@').next().unwrap();
+                let filename = format!("/usr/local/bin/{}", package_name);
+            
+                let content = response.bytes().await?;
+                fs::write(&filename, &content)?;
+            
+                let path = Path::new(&filename);
+                fs::set_permissions(&path, fs::Permissions::from_mode(0o755))?;
+                let permissions = (libc::S_IRUSR | libc::S_IWUSR | libc::S_IXUSR) as mode_t;
+                let path_str = path.to_str().ok_or("Invalid path")?;
+                let c_path = CString::new(path_str)?;
+                let path_bytes = c_path.as_bytes_with_nul();
+                let path_ptr = path_bytes.as_ptr() as *const i8;
+                let result = unsafe { chmod(path_ptr, permissions) };
+                if result != 0 {
+                    return Err(std::io::Error::last_os_error().into());
+                }
+                println!("Package {} has been installed at {}", package_name, path.display());
             } else {
                 println!("Binary URL not found for the specified package.");
             }
+            
         } else {
-            println!("Package not found");
+            let package_name = package.split('@').next().unwrap();
+            let package_version = package.split('@').nth(1).unwrap();
+            let available_versions = json["packages"]
+                .as_array()
+                .and_then(|packages| {
+                    packages.iter().find(|pkg| {
+                        pkg["name"].as_str() == Some(package_name)
+                    })
+                })
+                .and_then(|pkg| {
+                    pkg["versions"]
+                        .as_array()
+                        .map(|versions| {
+                            versions
+                                .iter()
+                                .map(|ver| ver["versionNumber"].as_str().unwrap_or(""))
+                                .collect::<Vec<_>>()
+                        })
+                });
+
+            println!("{} {} {} not found", "Package".red(), package_name, format!("version {}", package_version).red());
+            
+            if let Some(versions) = available_versions {
+                let selected_version = format!("{} {}", package_name, package_version);
+                for version in versions {
+                    let formatted_version = format!("{} {}", package_name, version);
+                    let arrow = if formatted_version == selected_version {
+                        "->".green().bold()
+                    } else {
+                        "  ".dimmed()
+                    };
+                    println!("{} {} {}", arrow, formatted_version, "✅".green());
+                }
+            } else {
+                println!("No available versions found for the package.");
+            }
         }
     } else {
         println!("Request failed with status code: {}", response.status());
