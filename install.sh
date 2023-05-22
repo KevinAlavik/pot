@@ -1,4 +1,4 @@
-‹#!/bin/bash
+#!/bin/bash
 # Clone the repo
 git clone https://github.com/kevinalavik/pot
 # Go inside of the repo
