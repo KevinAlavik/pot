@@ -36,7 +36,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 async fn fetch_json() -> Result<(), Box<dyn std::error::Error>> {
-    let url = "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/pot.json";
+    let url = "http://127.0.0.1/pot.json";
 
     let response = reqwest::get(url).await?;
 
@@ -72,7 +72,7 @@ async fn fetch_json() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 async fn install_package(package: &str) -> Result<(), Box<dyn std::error::Error>> {
-    let url = "https://5500-kevinalavik-pot-ex225ne9166.ws-eu97.gitpod.io/pot.json";
+    let url = "http://127.0.0.1/pot.json";
 
     let response = reqwest::get(url).await?;
 
