@@ -20,12 +20,12 @@
 
     h1 {
       color: #fabd2f;
-      font-size: 32px;
+      font-size: 48px;
       margin-bottom: 20px;
     }
 
     p {
-      font-size: 24px;
+      font-size: 32px;
       margin-bottom: 20px;
     }
 
@@ -39,7 +39,19 @@
 
     code {
       color: #ffffff;
-      font-size: 20px;
+      font-size: 24px;
+    }
+
+    .command-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .dollar-sign {
+      font-size: 36px;
+      margin-right: 5px;
     }
   </style>
 </head>
@@ -47,8 +59,10 @@
   <div class="container">
     <h1>pot</h1>
     <p>To install the Pot package manager, use the following command:</p>
-    <div class="code-box">
-      <pre>$ <code>curl https://puffer.is-a.dev/pot/install.sh | bash</code></pre>
+    <div class="command-container">
+      <div class="code-box">
+        <pre><code><span class="dollar-sign">$</span> curl https://puffer.is-a.dev/pot/install.sh | bash</code></pre>
+      </div>
     </div>
   </div>
 </body>
