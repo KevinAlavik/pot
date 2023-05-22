@@ -7,6 +7,7 @@
       font-family: Arial, sans-serif;
       color: #fff;
       margin: 0;
+      overflow: hidden;
     }
 
     .container {
@@ -52,11 +53,17 @@
     }
 
     .command {
+      display: flex;
+      align-items: center;
       font-size: 24px;
       background-color: #333;
       color: #fff;
       padding: 10px 20px;
       border-radius: 4px;
+    }
+
+    .command span {
+      margin-right: 5px;
     }
 
     .copy-button {
@@ -71,8 +78,8 @@
     <h1 class="title">Pot</h1>
     <p class="subtitle">The missing package manager for your system.</p>
     <div class="command-container">
-      <pre class="command" id="command">$
-curl https://puffer.is-a.dev/pot/install.sh | bash
+      <pre class="command" id="command">
+        <span>$</span> curl https://puffer.is-a.dev/pot/install.sh | bash
       </pre>
       <button class="copy-button" onclick="copyToClipboard('command')">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -85,7 +92,7 @@ curl https://puffer.is-a.dev/pot/install.sh | bash
   <script>
     function copyToClipboard(elementId) {
       const commandElement = document.getElementById(elementId);
-      const commandText = commandElement.innerText;
+      const commandText = commandElement.innerText.trim().substring(1);
       const textarea = document.createElement('textarea');
       textarea.value = commandText;
       document.body.appendChild(textarea);
