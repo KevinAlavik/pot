@@ -107,7 +107,8 @@ async fn fetch_json() -> Result<(), Box<dyn std::error::Error>> {
                             let version_text = format!("{} {}", "└──".cyan(), version_info);
                             println!("{}\n{}", package_name, version_text);
                         } else {
-                            println!("{}", package_name);
+                            let version_text = format!("{} {}", "└──".cyan(), version_info);
+                            println!("{}\n{}", package_name, version_text);
                         }
                     } else {
                         println!("📦 {} Package {}: {}", "Found".green(), i + 1, name);
