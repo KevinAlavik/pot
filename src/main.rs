@@ -1,3 +1,5 @@
+#![allow(unused_imports)]
+#![allow(dead_code)]
 use reqwest;
 use serde_json::Value;
 use colored::Colorize;
@@ -16,7 +18,7 @@ async fn test_fetch_json() {
 
 #[tokio::test]
 async fn test_install_package_valid() {
-    let result = install_package("package1@1.0").await;
+    let result = install_package("chrome-pie@0.0.1").await;
     assert!(result.is_ok());
 }
 
@@ -78,20 +80,18 @@ async fn fetch_json() -> Result<(), Box<dyn std::error::Error>> {
         // Start the timer
         let start_time = Instant::now();
 
-        // Accessing and printing the value of each package's name
+        // Accessing and printing the value of each package's name and exec-name
         if let Some(packages_array) = packages {
             for (i, package) in packages_array.as_array().unwrap().iter().enumerate() {
                 if let Some(name) = package.get("name") {
-                    println!("📦 {} Package {}: {}", "Found".green(), i + 1, name);
+                    if let Some(exec_name) = package.get("exec-name") {
+                        println!("📦 {} Package {}: {} (Exec-name: {})", "Found".green(), i + 1, name, exec_name);
+                    } else {
+                        println!("📦 {} Package {}: {}", "Found".green(), i + 1, name);
+                    }
                 }
             }
         }
-
-        // Stop the timer and calculate the elapsed time
-        let elapsed_time = start_time.elapsed();
-
-        // Print the elapsed time
-        println!("Execution time: {:.2?}", elapsed_time);
     } else {
         println!("Request failed with status code: {}", response.status());
     }
@@ -129,7 +129,7 @@ async fn install_package(package: &str) -> Result<(), Box<dyn std::error::Error>
             if let Some(binary) = package_info["binary"].as_str() {
                 let response = reqwest::get(binary).await?;
                 let package_name = package.split('@').next().unwrap();
-                let exec_name = package_info["exec-name"].as_str();
+                let exec_name = package_info["exec-name"].as_str().unwrap_or(package_name);
                 let filename = format!("/usr/local/bin/{}", exec_name);
 
                 let content = response.bytes().await?;

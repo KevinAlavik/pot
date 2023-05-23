@@ -2,11 +2,12 @@
     "packages":[
         {
             "name":"chrome-pie",
-            "exec-name":"pie",
             "versions":[
                 {
                     "versionNumber": "0.0.1",
-                    "binary": "https://puffer.is-a.dev/pot/packages/chrome-pie@0.0.1"
+                    "binary": "https://puffer.is-a.dev/pot/packages/chrome-pie@0.0.1",
+                    "exec-name":"pie",
+                    "latest": true
                 }
             ]
         }

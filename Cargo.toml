@@ -14,9 +14,6 @@ colored = "2.0"
 clap = "2.33"
 libc = "0.2"
 
-[build]
-target = "x86_64-unknown-linux-gnu"
-
 [package.metadata.deb]
 name = "pot"
 version = "0.1.0"
