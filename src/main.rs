@@ -167,7 +167,7 @@ async fn install_package(package: &str) -> Result<(), Box<dyn std::error::Error>
                 let response = reqwest::get(binary).await?;
                 let package_name = package.split('@').next().unwrap();
                 let exec_name = package_info["exec-name"].as_str().unwrap_or(package_name);
-                let filename = format!("/usr/local/bin/{}", exec_name);
+                let filename = format!("/usr/bin/{}", exec_name);
 
                 let content = response.bytes().await?;
                 fs::write(&filename, &content)?;
