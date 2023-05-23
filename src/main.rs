@@ -116,13 +116,24 @@ async fn install_package(package: &str) -> Result<(), Box<dyn std::error::Error>
                 })
             })
             .and_then(|pkg| {
-                pkg["versions"]
-                    .as_array()
-                    .and_then(|versions| {
-                        versions.iter().find(|ver| {
-                            ver["versionNumber"].as_str() == Some(package.split('@').nth(1).unwrap())
+                let version = package.split('@').nth(1);
+                if let Some(version) = version {
+                    pkg["versions"]
+                        .as_array()
+                        .and_then(|versions| {
+                            versions.iter().find(|ver| {
+                                ver["versionNumber"].as_str() == Some(version)
+                            })
                         })
-                    })
+                } else {
+                    pkg["versions"]
+                        .as_array()
+                        .and_then(|versions| {
+                            versions.iter().find(|ver| {
+                                ver["latest"].as_bool() == Some(true)
+                            })
+                        })
+                }
             });
 
         if let Some(package_info) = package_info {
