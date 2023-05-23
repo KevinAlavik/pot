@@ -21,6 +21,17 @@
                     "latest": true
                 }
             ]
+        },
+        {
+            "name": "tree",
+            "versions": [
+                {
+                    "versionNumber": "2.0.2",
+                    "binary": "https://puffer.is-a.dev/pot/packages/tree@2.0.2",
+                    "exec-name": "tree",
+                    "latest": true
+                }
+            ]
         }
     ]
 }
