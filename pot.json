@@ -2,6 +2,7 @@
     "packages":[
         {
             "name":"chrome-pie",
+            "exec-name":"pie",
             "versions":[
                 {
                     "versionNumber": "0.0.1",

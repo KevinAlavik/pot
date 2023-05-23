@@ -129,11 +129,12 @@ async fn install_package(package: &str) -> Result<(), Box<dyn std::error::Error>
             if let Some(binary) = package_info["binary"].as_str() {
                 let response = reqwest::get(binary).await?;
                 let package_name = package.split('@').next().unwrap();
-                let filename = format!("/usr/local/bin/{}", package_name);
+                let exec_name = package_info["exec-name"].as_str();
+                let filename = format!("/usr/local/bin/{}", exec_name);
 
                 let content = response.bytes().await?;
                 fs::write(&filename, &content)?;
-                println!("{} {}...", "Downloading".green(), package_name);
+                println!("{} {}...", "Downloading".green(), package);
                 // Set executable permissions
                 let path = Path::new(&filename);
                 let mut permissions = fs::metadata(path)?.permissions();
