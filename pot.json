@@ -33,5 +33,16 @@
                 }
             ]
         }
+        {
+            "name": "sniffy-linux",
+            "versions": [
+                {
+                    "versionNumber": "1.0.0",
+                    "binary": "https://puffer.is-a.dev/pot/packages/sniffy@1.0.0",
+                    "exec-name": "sniffy",
+                    "latest": true
+                }
+            ]
+        }
     ]
 }
