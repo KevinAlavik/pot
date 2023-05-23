@@ -5,27 +5,7 @@
             "versions":[
                 {
                     "versionNumber": "0.0.1",
-                    "binary": "http://127.0.0.1/demo/test@0.0.1"
-                },
-                {
-                    "versionNumber": "0.0.2",
-                    "binary": "http://127.0.0.1/demo/test@0.0.3"
-                },
-                {
-                    "versionNumber": "0.0.4",
-                    "binary": "http://127.0.0.1/demo/test@0.0.4"
-                },
-                {
-                    "versionNumber": "0.0.5",
-                    "binary": "http://127.0.0.1/demo/test@0.0.5"
-                },
-                {
-                    "versionNumber": "0.0.6",
-                    "binary": "http://127.0.0.1/demo/test@0.0.6"
-                },
-                {
-                    "versionNumber": "0.0.7",
-                    "binary": "http://127.0.0.1/demo/test@0.0.7"
+                    "binary": "https://puffer.is-a.dev/pot/demo/test@0.0.1"
                 }
             ]
         },
@@ -34,27 +14,7 @@
             "versions":[
                 {
                     "versionNumber": "0.0.1",
-                    "binary": "http://127.0.0.1/demo/cool-app@0.0.1"
-                },
-                {
-                    "versionNumber": "0.0.2",
-                    "binary": "http://127.0.0.1/demo/cool-app@0.0.3"
-                },
-                {
-                    "versionNumber": "0.0.4",
-                    "binary": "http://127.0.0.1/demo/cool-app@0.0.4"
-                },
-                {
-                    "versionNumber": "0.0.5",
-                    "binary": "http://127.0.0.1/demo/cool-app@0.0.5"
-                },
-                {
-                    "versionNumber": "0.0.6",
-                    "binary": "http://127.0.0.1/demo/cool-app@0.0.6"
-                },
-                {
-                    "versionNumber": "0.0.7",
-                    "binary": "http://127.0.0.1/demo/cool-app@0.0.7"
+                    "binary": "https://puffer.is-a.dev/pot/demo/cool-app@0.0.1"
                 }
             ]
         }

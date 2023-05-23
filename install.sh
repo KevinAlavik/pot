@@ -8,7 +8,7 @@ cargo build --release
 # Move the output target to /usr/local/bin/pot
 sudo mv target/release/pot /usr/local/bin/
 # Remove the target directory
-cargo clean
+sudo cargo clean
 # Move out and clean
 cd ..
 sudo rm -rf pot/
