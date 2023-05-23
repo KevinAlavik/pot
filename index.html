@@ -6,12 +6,13 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
+      padding: 20px;
+      background-color: #282828;
+      color: #ebdbb2;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      background-color: #282828;
-      color: #ebdbb2;
     }
 
     .container {
@@ -20,13 +21,13 @@
 
     h1 {
       color: #fabd2f;
-      font-size: 50px;
-      margin-bottom: 20px;
+      font-size: 2rem;
+      margin-bottom: 10px;
     }
 
     p {
-      font-size: 32px;
-      margin-bottom: 20px;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
     }
 
     .code-box {
@@ -35,23 +36,55 @@
       padding: 8px;
       font-family: monospace;
       display: inline-block;
+      max-width: 100%;
+      overflow: auto;
     }
 
     code {
       color: #ffffff;
-      font-size: 24px;
+      font-size: 1.2rem;
+      word-wrap: break-word;
     }
 
     .command-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     .dollar-sign {
-      font-size: 36px;
+      font-size: 1.8rem;
       margin-right: 5px;
+    }
+
+    @media (max-width: 768px) {
+      /* CSS changes for smaller devices (e.g., mobile) */
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+
+      code {
+        font-size: 1rem;
+      }
+
+      .dollar-sign {
+        font-size: 1.4rem;
+      }
+
+      .container {
+        width: 100%;
+        padding: 10px;
+      }
+
+      .code-box {
+        max-width: 80%;
+        overflow: auto;
+      }
     }
   </style>
 </head>
@@ -61,9 +94,10 @@
     <p>To install the Pot package manager, use the following command:</p>
     <div class="command-container">
       <div class="code-box">
-        <pre><code>curl https://puffer.is-a.dev/pot/install.sh | bash</code></pre>
+        <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/KevinAlavik/pot/main/install.sh)"</code></pre>
       </div>
     </div>
+    <p>(you need git and cargo installed)</p>
   </div>
 </body>
 </html>
