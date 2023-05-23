@@ -1,5 +1,7 @@
 #![allow(unused_imports)]
 #![allow(dead_code)]
+#![allow(unused_variables)]
+
 use reqwest;
 use serde_json::Value;
 use colored::Colorize;
@@ -80,18 +82,42 @@ async fn fetch_json() -> Result<(), Box<dyn std::error::Error>> {
         // Start the timer
         let start_time = Instant::now();
 
-        // Accessing and printing the value of each package's name and exec-name
+        // Accessing and printing the value of each package's name, versions, and exec-name
         if let Some(packages_array) = packages {
             for (i, package) in packages_array.as_array().unwrap().iter().enumerate() {
                 if let Some(name) = package.get("name") {
                     if let Some(exec_name) = package.get("exec-name") {
-                        println!("📦 {} Package {}: {} (Exec-name: {})", "Found".green(), i + 1, name, exec_name);
+                        let version_info = package.get("versions").and_then(|versions| {
+                            versions.as_array().map(|ver| {
+                                if ver.len() > 0 {
+                                    let version_numbers = ver
+                                        .iter()
+                                        .map(|ver| format!("v{}", ver["versionNumber"].as_str().unwrap_or("N/A")))
+                                        .collect::<Vec<_>>()
+                                        .join(", ");
+                                    format!("{}", version_numbers)
+                                } else {
+                                    "N/A".to_string()
+                                }
+                            })
+                        }).unwrap_or_else(|| "N/A".to_string());
+                        let package_name = format!("📦 {} Package {}: {}", "Found".green(), i + 1, name);
+                        
+                        if !version_info.is_empty() {
+                            let version_text = format!("{} {}", "└──".cyan(), version_info);
+                            println!("{}\n{}", package_name, version_text);
+                        } else {
+                            println!("{}", package_name);
+                        }
                     } else {
                         println!("📦 {} Package {}: {}", "Found".green(), i + 1, name);
                     }
                 }
             }
         }
+
+        let elapsed_time = start_time.elapsed();
+        println!("Fetching packages took: {:?}", elapsed_time);
     } else {
         println!("Request failed with status code: {}", response.status());
     }
