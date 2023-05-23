@@ -1,20 +1,11 @@
 {
     "packages":[
         {
-            "name":"test",
+            "name":"chrome-pie",
             "versions":[
                 {
                     "versionNumber": "0.0.1",
-                    "binary": "https://puffer.is-a.dev/pot/demo/test@0.0.1"
-                }
-            ]
-        },
-        {
-            "name":"cool-app",
-            "versions":[
-                {
-                    "versionNumber": "0.0.1",
-                    "binary": "https://puffer.is-a.dev/pot/demo/cool-app@0.0.1"
+                    "binary": "https://puffer.is-a.dev/pot/packages/chrome-pie@0.0.1"
                 }
             ]
         }

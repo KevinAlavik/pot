@@ -101,8 +101,7 @@ async fn fetch_json() -> Result<(), Box<dyn std::error::Error>> {
 
 async fn install_package(package: &str) -> Result<(), Box<dyn std::error::Error>> {
     let url = "https://puffer.is-a.dev/pot/pot.json";
-
-    println!("Fetching package list...");
+    println!("{} package list...", "Fetching".green());
     let response = reqwest::get(url).await?;
     
     if response.status().is_success() {
@@ -134,14 +133,13 @@ async fn install_package(package: &str) -> Result<(), Box<dyn std::error::Error>
 
                 let content = response.bytes().await?;
                 fs::write(&filename, &content)?;
-                println!("Fetching {}...", package_name);
+                println!("{} {}...", "Downloading".green(), package_name);
                 // Set executable permissions
                 let path = Path::new(&filename);
                 let mut permissions = fs::metadata(path)?.permissions();
                 let mode = permissions.mode();
                 permissions.set_mode(mode | 0o111); // Add executable permissions
                 fs::set_permissions(path, permissions)?;
-
                 let output = Command::new("sudo")
                     .arg("chmod")
                     .arg("a+x")
