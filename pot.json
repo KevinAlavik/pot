@@ -10,6 +10,17 @@
                     "latest": true
                 }
             ]
+        },
+        {
+            "name":"neofetch",
+            "versions": [
+                {
+                    "versionNumber": "7.1.0",
+                    "binary": "https://puffer.is-a.dev/pot/packages/neofetch@7.1.0",
+                    "exec-name": "neofetch",
+                    "latest": true
+                }
+            ]
         }
     ]
 }
