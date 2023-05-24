@@ -47,7 +47,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut sources = load_sources().unwrap_or_else(|_| vec![]);
 
     let matches = App::new("pot")
-        .version("0.0.1-alpha")
+        .version("0.0.2-alpha")
         .author("Kevin Alavik")
         .about("Package manager")
         .subcommand(App::new("fetch").about("Fetches all available packages"))
@@ -91,46 +91,34 @@ async fn fetch_json() -> Result<(), Box<dyn std::error::Error>> {
             // Store JSON data in the 'packages' variable
             let packages = json.get("packages");
 
-            // Start the timer
-            let start_time = Instant::now();
-
-            // Accessing and printing the value of each package's name, versions, and exec-name
+            // Accessing and printing the value of each package's name and versions
             if let Some(packages_array) = packages {
                 for (i, package) in packages_array.as_array().unwrap().iter().enumerate() {
                     if let Some(name) = package.get("name") {
-                        if let Some(exec_name) = package.get("exec-name") {
-                            let version_info = package.get("versions").and_then(|versions| {
-                                versions.as_array().map(|ver| {
-                                    if ver.len() > 0 {
-                                        let version_numbers = ver
-                                            .iter()
-                                            .map(|ver| format!("v{}", ver["versionNumber"].as_str().unwrap_or("N/A")))
-                                            .collect::<Vec<_>>()
-                                            .join(", ");
-                                        format!("{}", version_numbers)
-                                    } else {
-                                        "N/A".to_string()
-                                    }
-                                })
-                            }).unwrap_or_else(|| "N/A".to_string());
-                            let package_name = format!("📦 {} Package {}: {}", "Found".green(), i + 1, name);
+                        if let Some(versions) = package.get("versions").and_then(|v| v.as_array()) {
+                            if !versions.is_empty() {
+                                let version_numbers = versions
+                                    .iter()
+                                    .map(|ver| {
+                                        let version_number = ver["versionNumber"].as_str().unwrap_or("N/A");
+                                        format!("└── v{}", version_number)
+                                    })
+                                    .collect::<Vec<_>>()
+                                    .join("\n");
 
-                            if !version_info.is_empty() {
-                                let version_text = format!("{} {}", "└──".cyan(), version_info);
-                                println!("{}\n{}", package_name, version_text);
+                                let package_name = format!("📦 {} {}", "Found".green(), name);
+                                println!("{}\n{}", package_name, version_numbers);
                             } else {
-                                let version_text = format!("{} {}", "└──".cyan(), version_info);
-                                println!("{}\n{}", package_name, version_text);
+                                let package_name = format!("📦 {} {}", "Found".green(), name);
+                                println!("{}\n└── N/A", package_name);
                             }
                         } else {
-                            println!("📦 {} Package {}: {}", "Found".green(), i + 1, name);
+                            let package_name = format!("📦 {} {}", "Found".green(), name);
+                            println!("{}\n└── N/A", package_name);
                         }
                     }
                 }
             }
-
-            let elapsed_time = start_time.elapsed();
-            println!("Fetching packages took: {:?}", elapsed_time);
         } else {
             println!("Request failed with status code: {}", response.status());
         }
