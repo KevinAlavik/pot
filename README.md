@@ -33,10 +33,10 @@ pot install <package-name>@<version>
 ```
 Replace <package-name> with the name of the package you want to install, and <version> with the desired version number.
 
-For example, to install a package named example-package with version 1.0, run the following command:
+For example, to install a package named example-package with version 1.0.0, run the following command:
 
 ```bash
-pot install example-package@1.0
+pot install example-package@1.0.0
 ```
 ## Contributing
 Contributions to Pot are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
