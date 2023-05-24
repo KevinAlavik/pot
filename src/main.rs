@@ -20,7 +20,7 @@ async fn test_fetch_json() {
 
 #[tokio::test]
 async fn test_install_package_valid() {
-    let result = install_package("chrome-pie@0.0.1").await;
+    let result = install_package("chrome-pie@2.0.0").await;
     assert!(result.is_ok());
 }
 
@@ -32,7 +32,7 @@ async fn test_install_package_invalid() {
 
 #[tokio::test]
 async fn test_install_package_missing_url() {
-    let result = install_package("package2@1.0").await;
+    let result = install_package("chrome-pie@2.0.0").await;
     assert!(result.is_err());
 }
 
@@ -45,7 +45,7 @@ async fn test_fetch_json_failed_request() {
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let matches = App::new("pot")
-        .version("0.1.0")
+        .version("0.0.1-alpha")
         .author("Kevin Alavik")
         .about("Package manager")
         .subcommand(App::new("fetch").about("Fetches all available packages"))
@@ -61,7 +61,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             println!("No package specified. Use 'pot install <package-name>@<version>' to install a package.");
         }
     } else {
-        println!("No valid command specified. Use 'pot fetch' to fetch and print JSON data, or 'pot install <package-name>@<version>' to install a package.");
+        println!("No valid command specified. Use 'pot fetch' to get all available packages, or 'pot install <package-name>@<version>' to install a package.");
     }
 
     Ok(())
