@@ -12,6 +12,10 @@ sudo cargo clean
 # Move out and clean
 cd ..
 sudo rm -rf pot/
+<<<<<<< HEAD
 sudo mkdir /etc/pot/
 sudo touch /etc/pot/sources.json
 sudo echo '[ "https://puffer.is-a.dev/pot/pot.json" ]' > /etc/pot/sources.json
+=======
+echo '[ "https://puffer.is-a.dev/pot/pot.jdon" ]' > /etc/pot/sources.json
+>>>>>>> 8967f013e97f282a08e752bb45681c9880f7a1be
