@@ -7,7 +7,7 @@ Pot is a simple package manager written in Rust. It allows you to fetch and inst
 To install the Pot package manager, execute the following command in your terminal:
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/KevinAlavik/pot/main/install.sh)"
+sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/KevinAlavik/pot/main/install.sh)"
 ```
 Please ensure that you have git and cargo installed on your system before running the installation command.
 
