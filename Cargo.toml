@@ -11,11 +11,11 @@ tokio = { version = "1", features = ["full"] }
 serde = "1.0"
 serde_json = "1.0"
 colored = "2.0"
-clap = "4.3"
+clap = "2.33"
 libc = "0.2"
 
 [package.metadata.deb]
 name = "pot"
-version = "0.1.0"
+version = "0.0.2-alpha"
 maintainer = "Kevin Alavik <kevin@alavik.se>"
 architecture = "amd64"
