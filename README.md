@@ -21,9 +21,11 @@ To fetch and print the packages, use the following command:
 
 ```bash
 pot fetch
-Install
-The install command allows you to install a specific package by providing its name and version.
 ```
+
+## Install
+The install command allows you to install a specific package by providing its name and version.
+
 To install a package, use the following command:
 
 ```bash
