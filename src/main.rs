@@ -155,10 +155,10 @@ fn save_sources(sources: &[String]) -> Result<(), Box<dyn std::error::Error>> {
 
 async fn install_package(package: &str) -> Result<(), Box<dyn std::error::Error>> {
     let sources = load_sources().unwrap_or_else(|_| vec![]);
-
-    for source_url in &sources {
+    let i = 0;
+    for source_url in &sources {        
         let response = reqwest::get(source_url).await?;
-        
+        let _ = i + 1;
         if response.status().is_success() {
             let body = response.text().await?;
             let json: Value = serde_json::from_str(&body)?;
@@ -210,7 +210,7 @@ async fn install_package(package: &str) -> Result<(), Box<dyn std::error::Error>
                     break;
                 }
             } else {
-                println!("Package not found: {}", package);
+                println!("Source {}: Package not found: {}", i, source_url);
             }
         } else {
             println!("Request failed with status code: {}", response.status());
