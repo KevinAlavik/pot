@@ -49,6 +49,17 @@
                     "latest": true
                 }
             ]
+        },
+        {
+            "name": "cpkg",
+            "versions": [
+                {
+                    "versionNumber": "0.1.0",
+                    "binary": "https://puffer.is-a.dev/cpkg/src/cpkg.sh",
+                    "exec-name": "cpkg",
+                    "latest": true
+                }
+            ]
         }
     ]
 }
