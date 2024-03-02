@@ -5,13 +5,13 @@
             "versions":[
                 {
                     "versionNumber": "2.0.0",
-                    "binary": "https://puffer.is-a.dev/pot/packages/chrome-pie@2.0.0",
+                    "binary": "https://kevinalavik.github.io/pot/packages/chrome-pie@2.0.0",
                     "exec-name":"pie",
                     "latest": true
                 },
 		{
 		    "versionNumber": "2.0.0-test",
-		    "binary": "https://puffer.is-a.dev/pot/packages/chrome-pie@2.0.0",
+		    "binary": "https://kevinalavik.github.io/pot/packages/chrome-pie@2.0.0",
 		    "exec-name": "pie",
                     "latest": false
 		}
@@ -22,7 +22,7 @@
             "versions": [
                 {
                     "versionNumber": "2.0.2",
-                    "binary": "https://puffer.is-a.dev/pot/packages/tree@2.0.2",
+                    "binary": "https://kevinalavik.github.io/pot/packages/tree@2.0.2",
                     "exec-name": "tree",
                     "latest": true
                 }
@@ -33,7 +33,7 @@
             "versions": [
                 {
                     "versionNumber": "1.0.0",
-                    "binary": "https://puffer.is-a.dev/pot/packages/sniffy@1.0.0",
+                    "binary": "https://kevinalavik.github.io/pot/packages/sniffy@1.0.0",
                     "exec-name": "sniffy",
                     "latest": true
                 }
@@ -44,7 +44,7 @@
             "versions": [
                 {
                     "versionNumber": "0.1.0",
-                    "binary": "https://puffer.is-a.dev/cpkg/src/cpkg.sh",
+                    "binary": "https://kevinalavik.github.io/cpkg/src/cpkg.sh",
                     "exec-name": "cpkg",
                     "latest": true
                 }
