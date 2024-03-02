@@ -12,6 +12,6 @@ sudo cargo clean
 # Move out and clean
 cd ..
 sudo rm -rf pot/
-sudo mkdir /etc/pot/
+sudo mkdir -p /etc/pot/
 sudo touch /etc/pot/sources.json
-sudo echo '[ "https://puffer.is-a.dev/pot/pot.json" ]' > /etc/pot/sources.json
+sudo echo '[ "https://kevinalavik.github.io/pot/pot.json" ]' > /etc/pot/sources.json
